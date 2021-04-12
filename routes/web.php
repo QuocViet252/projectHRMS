@@ -19,6 +19,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/branch', 'Branch\BranchController@index')->name('branch');
@@ -30,4 +41,3 @@ Route::get('/delete/{id}', 'Branch\BranchController@destroy')->name('delete-bran
 
 Route::get('/update/{id}', 'Branch\BranchController@edit')->name('update-branch');
 Route::post('/update/{id}', 'Branch\BranchController@update')->name('update-branch');
-
