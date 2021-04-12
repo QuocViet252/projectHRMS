@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{url('phongban')}}">
                             <i class="material-icons">perm_contact_calendar</i>
                             <span>Phòng Ban</span>
                         </a>

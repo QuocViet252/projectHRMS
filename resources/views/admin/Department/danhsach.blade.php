@@ -69,11 +69,74 @@
                                         <td>{{$value->tinhtrang}}</td>
                                         <td>
                                         
-                                        <a href ="{{url('phongban/xoa/'.$value->id)}}" ><i style="font-size:22px" class="material-icons">delete_forever</i><a>
-                                        <a href ="{{url('phongban/sua/'.$value->id)}}" ><i style="font-size:22px" class="material-icons">edit_calendar</i><a>
-                                            
-                                        </td>
+                                        <a data-toggle="modal" data-target="#delete" href ="" ><i style="font-size:22px" class="material-icons">delete_forever</i><a>
                                         
+                                        <a href =""  type="button" data-toggle="modal" data-target="#fix"><i style="font-size:22px" class="material-icons">edit_calendar</i><a>
+                                        </td>
+                                        <!-- Sửa modal -->
+                                        <div class="modal fade" id="fix" role="dialog">
+                                            <div class="modal-dialog">
+                                            
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 style='color:#00b0e4' class="modal-title">Sửa Phòng Ban Công Ty SkyTech</h4>
+                                                </div>
+                                                <div  class="body">
+                                                    <form action = "{{url('phongban/sua/'.$value->id)}}" id="form_validation" method="POST">
+                                                    @csrf
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                <input  type="text" class="form-control" name="name" value ="{{$value->name}}"  required>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <!-- Default radio -->
+                                                        <div class="demo-radio-button">
+                                                            <input value = "active" name="group1" type="radio" id="radio_1" checked />
+                                                            <label name for="radio_1">Hoạt động</label>
+                                                            <input value = "close" name="group1" type="radio" id="radio_2" />
+                                                            <label name for="radio_2">Tạm ngừng</label>
+                                                            
+                                                        </div>
+                                                        
+                                                    
+                                                        
+                                                        
+                                                        
+                                                        <button class="btn btn-primary waves-effect" type="submit">Chấp nhận</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                            </div>
+                                        </div>
+                                        <!-- Xóa modal -->
+                                        <div class="modal" id="delete">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div style ="color:#fb483a" class="modal-body">
+                                                    <h2 st class="modal-title">Xóa Phòng Ban !</h2>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-header">
+                                                    <h5>Bạn có thực sự muốn xóa phòng ban {{$value->name}} ?</h5>
+                                                </div>
+
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                                                    <a  href ="{{url('/phongban/xoa/'.$value->id)}}" class="btn btn-danger">Xác Nhận</a>
+                                                </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </tr>
                                     @endforeach
                                        
@@ -123,7 +186,7 @@
                         
                         </div>
                     </div>
-                    <!-- Sửa phòng ban Modal -->
+                    
                     
                 </div>
             </div>
