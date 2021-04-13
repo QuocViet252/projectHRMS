@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{url('branch')}}">
                             <i class="material-icons">maps_home_work</i>
                             <span>Chi Nhánh</span>
                         </a>
