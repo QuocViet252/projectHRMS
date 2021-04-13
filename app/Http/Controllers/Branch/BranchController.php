@@ -39,22 +39,39 @@ class BranchController extends Controller
     {
         $branch = new Branch();
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $file = $image->getClientOriginalName();
-            $name = time().'_'.$file;
-            $destinationPath = public_path('project_asset/images/image_branch/');
-            $image->move($destinationPath, $name);
-        }
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     $file = $image->getClientOriginalName();
+        //     // $name = time().'_'.$file;
+        //     $destinationPath = public_path('project_asset/images/image_branch/');
+        //     $image->move($destinationPath, $file);
+        // }
 
-        $branch->name_branch = $request->name_branch;
-        $branch->image_branch = $request->image_branch;
+        // $branch->name_branch = $request->name_branch;
+        // $branch->image_branch = $request->image_branch;
+        // $branch->director_branch = $request->director_branch;
+        // $branch->email_branch = $request->email_branch;
+        // $branch->phone_branch = $request->phone_branch;
+        // $branch->local_branch = $request->local_branch;
+        // $branch->save();
+        // return redirect('branch')->with('success', 'Tạo mới thành công thành công chi nhánh!');;
+        $branch->name_branch = $request->name_branch;       
         $branch->director_branch = $request->director_branch;
         $branch->email_branch = $request->email_branch;
         $branch->phone_branch = $request->phone_branch;
         $branch->local_branch = $request->local_branch;
-        $branch->save();
-        return redirect('branch');
+
+        $fileImage = $request->image_branch;
+        if(!empty($fileImage)){
+            $branch->image_branch = $fileImage->getClientOriginalName();
+            
+        }
+        if($branch->save()){
+            if(!empty($fileImage)){
+                $fileImage->move('project_asset/images/image_branch',$fileImage->getClientOriginalName());
+            }
+            return redirect('branch')->with('success', 'Tạo mới thành công thành công chi nhánh!');
+        }
 
     }
 
@@ -92,22 +109,23 @@ class BranchController extends Controller
     {
         $branch = Branch::find($id);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $file = $image->getClientOriginalName();
-            $name = time().'_'.$file;
-            $destinationPath = public_path('project_asset/images/image_branch/');
-            $image->move($destinationPath, $name);
-        }
-
-        $branch->name_branch = $request->name_branch;
-        $branch->image_branch = $request->image_branch;
+        $branch->name_branch = $request->name_branch;       
         $branch->director_branch = $request->director_branch;
         $branch->email_branch = $request->email_branch;
         $branch->phone_branch = $request->phone_branch;
         $branch->local_branch = $request->local_branch;
-        $branch->save();
-        return redirect('branch')->with('message', 'CẬP NHẬT THÀNH CÔNG!');
+
+        $fileImage = $request->image_branch;
+        if(!empty($fileImage)){
+            $branch->image_branch = $fileImage->getClientOriginalName();
+            
+        }
+        if($branch->save()){
+            if(!empty($fileImage)){
+                $fileImage->move('project_asset/images/image_branch',$fileImage->getClientOriginalName());
+            }
+            return redirect('branch')->with('success', 'Cập nhập thành công chi nhánh!');
+        }
     }
 
     /**
@@ -119,6 +137,6 @@ class BranchController extends Controller
     public function destroy($id)
     {
         $id = Branch::find($id)->delete();
-        return redirect('branch');
+        return redirect('branch')->with('success', 'Xóa phòng ban thành công!');;
     }
 }

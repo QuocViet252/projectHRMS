@@ -37,7 +37,7 @@
                                 </h2>
                             </div>
                             <div class="body">
-                                <form class="form-horizontal" action= "{{$branch->id}}" method="post">
+                                <form class="form-horizontal" action= "{{$branch->id}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row clearfix">
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
@@ -55,27 +55,11 @@
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                             <label for="password_2">Hình ảnh</label>
                                         </div>
-                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                            <div class="form-group">
-                                                <div class="card">
-                                                    <div class="header">
-                                                        <h2>
-                                                            CHỌN HÌNH ẢNH
-                                                        </h2>
-                                                    </div>
-                                                    <div class="body">
-                                                        <div class="dz-message">
-                                                            <div class="drag-icon-cph">
-                                                                <i class="material-icons">touch_app</i>
-                                                            </div>
-                                                            <h3>Drop files here or click to upload.</h3>
-                                                        </div>
-                                                        <div class="fallback">
-                                                            <input name="image_branch" type="file" multiple />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="fallback">
+                                            <input name="image_branch" type="file" multiple />
+                                        </div>
+                                        <div class="row clearfix">
+                                            <img src="{{ asset('project_asset/images/image_branch/'.$branch->image_branch) }}" height="150px" width="250px">
                                         </div>
                                     </div>
                                     <div class="row clearfix">
