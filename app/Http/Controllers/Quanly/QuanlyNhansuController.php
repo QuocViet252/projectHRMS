@@ -73,7 +73,7 @@ class QuanlyNhansuController extends Controller
 
 		public function update(Request $request, $id)
 		{
-		
+			$getData = DB::table('users')->select('id', 'name','email','phone', 'role', 'salary')->where('id','=',$id)->get();
 			$updateData = DB::table('users')->where('id', $request->id)->update([
 				'id' => $request->id,
 				'name' => $request->name,
@@ -86,13 +86,14 @@ class QuanlyNhansuController extends Controller
 			//Kiểm tra lệnh update để trả về một thông báo
 			if ($updateData) {
 				Session::flash('success', 'Thành công!');
+				return redirect('nhansu');
 			}else {                        
 				Session::flash('error', 'Thất bại!');
 			}
 			
 			//Thực hiện chuyển trang
 		 	//return redirect('nhansu')->with('update', $updateData);
-			return redirect('nhansu');
+			 return view('admin.Nhansu.edit', compact('getData', $getData));
 			//dd($updateData);
 		}
 }

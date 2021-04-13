@@ -864,11 +864,11 @@ Manage Role
                                           <td>{{ $nhansu->phone }}</td>
                                           <td>{{ $nhansu->salary }}</td>
                                           <td>
-                                              <a data-toggle="modal" data-target="#sua" style='cursor: pointer'>Sửa</a>
-                                              <span><a href="/nhansu/{{ $nhansu->id }}/delete">Xóa</a></span>
+                                              <a data-toggle="modal" data-target="#sua{{$nhansu->id}}" style='cursor: pointer'>Sửa</a>
+                                              <span><a data-toggle="modal" data-target="#xoa" style='cursor: pointer'>Xóa</a></span>
                                           </td>
                                       </tr>
-                                      <div class="modal fade" id="sua" tabindex="-1" role="dialog">
+                                      <div class="modal fade" id="sua{{$nhansu->id}}" tabindex="-1" role="dialog">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -899,9 +899,26 @@ Manage Role
                                                         </div>
                                                 
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                                    <button type="submit" class="btn btn-link waves-effect">Lưu</button>
+                                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Đóng</button>
                                                 </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                            
+                                        </div>
+                                      </div>
+                                      <div class="modal fade" id="xoa" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title" id='defaultModalLabel' style='text-align: center'>Bạn có chắc muốn xóa?</h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-link waves-effect"><a style='text-decoration: none; color:red;' href="nhansu/{{$nhansu->id}}/delete">Có</a></button>
+                                                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Không</button>
+                                                        </div>
                                                 </form>
                                             </div>
                                         </div>
