@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{ url('nhansu') }}">
                             <i class="material-icons">group</i>
                             <span>Quản Lý Nhân Sự</span>
                         </a>

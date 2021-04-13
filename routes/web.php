@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Auth::routes();
 
@@ -39,3 +42,9 @@ Route::get('/delete/{id}', 'Branch\BranchController@destroy')->name('delete-bran
 Route::get('/update/{id}', 'Branch\BranchController@edit')->name('update-branch');
 Route::post('/update/{id}', 'Branch\BranchController@update')->name('update-branch');
 
+Route::get('nhansu', 'Quanly\QuanlyNhansuController@index')->name('nhansuIndex');
+Route::get('nhansu/create', 'Quanly\QuanlyNhansuController@create')->name('nhansuCreate');
+Route::post('nhansu/create', 'Quanly\QuanlyNhansuController@store')->name('nhansuStore');
+Route::get('nhansu/{id}/edit', 'Quanly\QuanlyNhansuController@edit')->name('nhansuEdit');
+Route::post('nhansu/update/{id}', 'Quanly\QuanlyNhansuController@update')->name('nhansuUpdate');
+Route::get('nhansu/{id}/delete', 'Quanly\QuanlyNhansuController@destroy')->name('nhansuDelete'); 
