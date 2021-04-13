@@ -76,34 +76,11 @@
                                             <td>{{$item->phone_branch}}</td>
                                             <td>{{$item->local_branch}}</td>
                                             <td>
-                                                <a data-toggle="modal" data-target="#delete" href ="" ><i style="font-size:22px" class="material-icons">delete_forever</i><a>
+                                                <a  href ="{{url('/delete/'.$item->id)}}" class="button delete-confirm" ><i style="font-size:22px" class="material-icons">delete_forever</i><a>
                                                 <a href ="{{url('/update/'.$item->id)}}" ><i style="font-size:25px" class="material-icons">edit_calendar</i><a>
 
                                             </td>
-                                            <div class="modal" id="delete">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-
-                                                    <!-- Modal Header -->
-                                                    <div style ="color:#fb483a" class="modal-body">
-                                                        <h2 st class="modal-title">Xóa Chi Nhánh !</h2>
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    </div>
-
-                                                    <!-- Modal body -->
-                                                    <div class="modal-header">
-                                                        <h5>Bạn có thực sự muốn xóa chi nhánh {{$item->name_branch}} ?</h5>
-                                                    </div>
-
-                                                    <!-- Modal footer -->
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
-                                                        <a  href ="{{url('/delete/'.$item->id)}}" class="btn btn-danger">Xác Nhận</a>
-                                                    </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -149,4 +126,21 @@
 
     <!-- Demo Js -->
     <script src="{{asset('project_asset/js/demo.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.delete-confirm').on('click', function (event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            swal({
+                title: 'Xóa chi nhánh',
+                text: 'Bạn có thực sự muốn xóa chi nhánh này?',
+                icon: 'warning',
+                buttons: ["Hủy", "Đồng ý!"],
+            }).then(function(value) {
+                if (value) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
 @endsection

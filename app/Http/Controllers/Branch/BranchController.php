@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Branch;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Branch;
-
+use App\Http\Requests\BranchRequest;
 class BranchController extends Controller
 {
     /**
@@ -35,7 +35,7 @@ class BranchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BranchRequest $request)
     {
         $branch = new Branch();
 
@@ -105,7 +105,7 @@ class BranchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BranchRequest $request, $id)
     {
         $branch = Branch::find($id);
 

@@ -28,7 +28,15 @@
                 {{session('success')}}
             </div>
         @endif
-        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- Basic Examples -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -69,78 +77,55 @@
                                         <td>{{$value->tinhtrang}}</td>
                                         <td>
                                         
-                                        <a data-toggle="modal" data-target="#delete" href ="" ><i style="font-size:22px" class="material-icons">delete_forever</i><a>
                                         
-                                        <a href =""  type="button" data-toggle="modal" data-target="#fix"><i style="font-size:22px" class="material-icons">edit_calendar</i><a>
+                                        <a href="{{url('/phongban/xoa/'.$value->id)}}"  class="button delete-confirm"><i style="font-size:22px" class="material-icons">delete_forever</i></a>
+                                        <a href =""  type="button" data-toggle="modal" data-target="#fix{{$value->id}}"><i style="font-size:22px" class="material-icons">edit_calendar</i><a>
                                         </td>
-                                        <!-- Sửa modal -->
-                                        <div class="modal fade" id="fix" role="dialog">
-                                            <div class="modal-dialog">
-                                            
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 style='color:#00b0e4' class="modal-title">Sửa Phòng Ban Công Ty SkyTech</h4>
-                                                </div>
-                                                <div  class="body">
-                                                    <form action = "{{url('phongban/sua/'.$value->id)}}" id="form_validation" method="POST">
-                                                    @csrf
-                                                        <div class="form-group form-float">
-                                                            <div class="form-line">
-                                                                <input  type="text" class="form-control" name="name" value ="{{$value->name}}"  required>
-                                                                
-                                                            </div>
-                                                        </div>
-                                                        <!-- Default radio -->
-                                                        <div class="demo-radio-button">
-                                                            <input value = "active" name="group1" type="radio" id="radio_1" checked />
-                                                            <label name for="radio_1">Hoạt động</label>
-                                                            <input value = "close" name="group1" type="radio" id="radio_2" />
-                                                            <label name for="radio_2">Tạm ngừng</label>
+                                        
+                                    </tr>
+                                    <!-- Sửa modal -->
+                                    <div class="modal fade" id="fix{{$value->id}}" role="dialog">
+                                        <div class="modal-dialog">
+                                        
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 style='color:#00b0e4' class="modal-title">Sửa Phòng Ban Công Ty SkyTech</h4>
+                                            </div>
+                                            <div  class="body">
+                                                <form action = "{{url('phongban/sua/'.$value->id)}}" id="form_validation" method="POST">
+                                                @csrf
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input  type="text" class="form-control" name="name" value = "{{$value->name}}"  required>
                                                             
                                                         </div>
+                                                    </div>
+                                                    <!-- Default radio -->
+                                                    <div class="demo-radio-button">
+                                                        <input value = "active" name="group1" type="radio" id="radio_1" checked />
+                                                        <label name for="radio_1">Hoạt động</label>
+                                                        <input value = "close" name="group1" type="radio" id="radio_2" />
+                                                        <label name for="radio_2">Tạm ngừng</label>
                                                         
+                                                    </div>
                                                     
-                                                        
-                                                        
-                                                        
-                                                        <button class="btn btn-primary waves-effect" type="submit">Chấp nhận</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            
+                                                
+                                                    
+                                                    
+                                                    
+                                                    <button class="btn btn-primary waves-effect" type="submit">Chấp nhận</button>
+                                                </form>
                                             </div>
                                         </div>
-                                        <!-- Xóa modal -->
-                                        <div class="modal" id="delete">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-
-                                                <!-- Modal Header -->
-                                                <div style ="color:#fb483a" class="modal-body">
-                                                    <h2 st class="modal-title">Xóa Phòng Ban !</h2>
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-
-                                                <!-- Modal body -->
-                                                <div class="modal-header">
-                                                    <h5>Bạn có thực sự muốn xóa phòng ban {{$value->name}} ?</h5>
-                                                </div>
-
-                                                <!-- Modal footer -->
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
-                                                    <a  href ="{{url('/phongban/xoa/'.$value->id)}}" class="btn btn-danger">Xác Nhận</a>
-                                                </div>
-
-                                                </div>
-                                            </div>
+                                        
                                         </div>
-                                    </tr>
+                                    </div>
                                     @endforeach
                                        
                                 </tbody>
+                                
                                 
                             </table>
                             
@@ -168,10 +153,10 @@
                                     </div>
                                     <!-- Default radio -->
                                     <div class="demo-radio-button">
-                                        <input value = "active" name="group1" type="radio" id="radio_1" checked />
-                                        <label name for="radio_1">Hoạt động</label>
-                                        <input value = "close" name="group1" type="radio" id="radio_2" />
-                                        <label name for="radio_2">Tạm ngừng</label>
+                                        <input value = "active" name="group1" type="radio" id="radio_3" checked />
+                                        <label name for="radio_3">Hoạt động</label>
+                                        <input value = "close" name="group1" type="radio" id="radio_4" />
+                                        <label name for="radio_4">Tạm ngừng</label>
                                         
                                     </div>
                                     
@@ -227,6 +212,23 @@
 
 <!-- Demo Js -->
 <script src="{{ asset('project_asset/js/demo.js')}}"></script>
-<
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('.delete-confirm').on('click', function (event) {
+        event.preventDefault();
+        const url = $(this).attr('href');
+        swal({
+            title: 'Xóa phòng ban',
+            text: 'Bạn có thực sự muốn xóa phòng ban này?',
+            icon: 'warning',
+            buttons: ["Hủy", "Đồng ý!"],
+        }).then(function(value) {
+            if (value) {
+                window.location.href = url;
+            }
+        });
+    });
+</script>
+
 @endsection
 @endsection
