@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PhongBan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\PhongBan;
+use App\Models\Branch;
 use App\Http\Requests\PhongBanRequest;
 
 class PhongBanController extends Controller
@@ -21,7 +22,8 @@ class PhongBanController extends Controller
     public function index()
     {
         $phongban = PhongBan::all();
-        return view('admin.Department.danhsach',compact('phongban'));
+        $branch = Branch::all();
+        return view('admin.Department.danhsach',compact('phongban','branch'));
     }
 
     /**
@@ -31,6 +33,7 @@ class PhongBanController extends Controller
      */
     public function getThem()
     {
+        
         return view('admin.Department.them');
     }
 
@@ -40,14 +43,13 @@ class PhongBanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postThem(PhongBanRequest $request)
+    public function postThem(PhongBanRequest $request )
     {
         
-        
-
         $phongban = new PhongBan;
         
         $phongban->name = $request->name;
+        $phongban->chinhanh = $request->get('chiNhanh');
         $checkActiveOrClose = $request->get('group1');
         if( $checkActiveOrClose == 'active' ){
             $phongban->tinhtrang = "Hoạt động";
@@ -63,12 +65,6 @@ class PhongBanController extends Controller
             return redirect('phongban')->with('success',__('Bạn đã thêm phòng ban mới thành công'));
         }
         
-        
-
-        
-        
-        
-
         
     }
 
@@ -93,8 +89,11 @@ class PhongBanController extends Controller
      */
     public function postSua(Request $request,$id)
     {
+       
         $phongban = PhongBan::find($id);
+
         $phongban->name = $request->name;
+        $phongban->chinhanh = $request->get('newBranch',"");
         $checkActiveOrClose = $request->get('group1');
         if( $checkActiveOrClose == 'active' ){
             $phongban->tinhtrang = "Hoạt động";
@@ -107,8 +106,12 @@ class PhongBanController extends Controller
             
             
 
-            return redirect('phongban')->with('success',__('Bạn đã chỉnh sửa phòng ban thành công'));
+            return redirect('phongban')->with('success',__('Bạn đã thêm phòng ban mới thành công'));
         }
+       
+
+
+        
     }
 
     /**

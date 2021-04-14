@@ -25,12 +25,14 @@ class PhongBanRequest extends FormRequest
     {
         return [
             'name'=>'unique:phongban,name',
+            'chiNhanh'=>'required',
         ];
     }
     public function messages()
     {
         return [
             'unique'=>'Phòng ban đã tồn tại',
+            'required'=>'Vui lòng chọn chi nhánh',
         ];
     }
 }

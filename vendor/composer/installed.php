@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
+    'pretty_version' => '1.0.0+no-version-set',
+    'version' => '1.0.0.0',
     'aliases' => 
     array (
     ),
-    'reference' => 'bbb957094cd267c75d8ffd17a7548e1a7bc0f448',
+    'reference' => NULL,
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -90,12 +90,12 @@
     ),
     'facade/flare-client-php' => 
     array (
-      'pretty_version' => '1.6.1',
-      'version' => '1.6.1.0',
+      'pretty_version' => '1.7.0',
+      'version' => '1.7.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f2b0969f2d9594704be74dbeb25b201570a98098',
+      'reference' => '6bf380035890cb0a09b9628c491ae3866b858522',
     ),
     'facade/ignition' => 
     array (
@@ -408,12 +408,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => '1.0.0+no-version-set',
+      'version' => '1.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'bbb957094cd267c75d8ffd17a7548e1a7bc0f448',
+      'reference' => NULL,
     ),
     'laravel/tinker' => 
     array (

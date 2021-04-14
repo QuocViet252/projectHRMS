@@ -816,21 +816,10 @@ Manage Role
                           <h2>
                                 Quản lý nhân sự
                                 <div style='float: right'>
-                                    <button class='btn btn-primary' data-toggle="modal" data-target="#them">Thêm</button>
+                                    <button class='btn btn-primary' data-toggle="modal" data-target="#them">Thêm Nhân Sự</button>
                                 </div>
                           </h2>
-                          {{-- <ul class="header-dropdown m-r--5">
-                              <li class="dropdown">
-                                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                      <i class="material-icons">more_vert</i>
-                                  </a>
-                                  <ul class="dropdown-menu pull-right">
-                                      <li><a href="javascript:void(0);">Action</a></li>
-                                      <li><a href="javascript:void(0);">Another action</a></li>
-                                      <li><a href="javascript:void(0);">Something else here</a></li>
-                                  </ul>
-                              </li>
-                          </ul> --}}
+                          
                       </div>
                       <div class="body">
                           <div class="table-responsive">
@@ -840,21 +829,12 @@ Manage Role
                                           <th>Tên</th>
                                           <th>Chức vụ</th>
                                           <th>Mail</th>
-                                          <th>Số đt</th>
+                                          <th>Điện thoại</th>
                                           <th>Lương</th>
                                           <th>Chức năng</th>
                                       </tr>
                                   </thead>
-                                  <tfoot>
-                                      <tr>
-                                        <th>Tên</th>
-                                        <th>Chức vụ</th>
-                                        <th>Mail</th>
-                                        <th>Số đt</th>
-                                        <th>Lương</th>
-                                        <th>Chức năng</th>
-                                      </tr>
-                                  </tfoot>
+                                  
                                   <tbody>
                                     @foreach($listnhansu as $key => $nhansu)
                                       <tr>
@@ -896,7 +876,7 @@ Manage Role
                                                     <div class="form-group">
                                                             <label for="salary">Lương</label>
                                                             <input type="text" class="form-control" id="salary" name="salary" placeholder="Lương" maxlength="15" value="{{ $nhansu->salary }}" required />
-                                                        </div>
+                                                    </div>
                                                 
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-link waves-effect">Lưu</button>
@@ -1519,5 +1499,22 @@ Manage Role
 
   <!-- Demo Js -->
   <script src="{{ asset('project_asset/js/demo.js') }}"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.delete-confirm').on('click', function (event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            swal({
+                title: 'Xóa phòng ban',
+                text: 'Bạn có thực sự muốn xóa thành viên này?',
+                icon: 'warning',
+                buttons: ["Hủy", "Đồng ý!"],
+            }).then(function(value) {
+                if (value) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
 @endsection
 </body>

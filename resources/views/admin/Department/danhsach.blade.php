@@ -9,6 +9,8 @@
 <!-- Animation Css -->
 <link href="{{ asset('project_asset/plugins/animate-css/animate.css')}}" rel="stylesheet" />
 
+<link href="{{ asset('project_asset/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+
 <!-- JQuery DataTable Css -->
 <link href="{{ asset('project_asset/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
 
@@ -63,6 +65,7 @@
                                         <th>ID</th>
                                         <th>Tên Phòng Ban</th>
                                         <th>Tình Trạng</th>
+                                        <th>Chi Nhánh</th>
                                         <th width="10%" >Chức Năng</th>
                                         
                                     </tr>
@@ -75,6 +78,7 @@
                                         <td>{{$value->id}}</td>
                                         <td>{{$value->name}}</td>
                                         <td>{{$value->tinhtrang}}</td>
+                                        <td>{{$value->chinhanh}}</td>
                                         <td>
                                         
                                         
@@ -90,31 +94,34 @@
                                         <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 style='color:#00b0e4' class="modal-title">Sửa Phòng Ban Công Ty SkyTech</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 style='color:#00b0e4' class="modal-title">Sửa Phòng Ban {{$value->name}}</h4>
                                             </div>
                                             <div  class="body">
                                                 <form action = "{{url('phongban/sua/'.$value->id)}}" id="form_validation" method="POST">
                                                 @csrf
                                                     <div class="form-group form-float">
                                                         <div class="form-line">
-                                                            <input  type="text" class="form-control" name="name" value = "{{$value->name}}"  required>
-                                                            
+                                                            <input  type="text" class="form-control" name="name" value ="{{$value->name}}"  required>     
                                                         </div>
-                                                    </div>
-                                                    <!-- Default radio -->
-                                                    <div class="demo-radio-button">
-                                                        <input value = "active" name="group1" type="radio" id="radio_1" checked />
-                                                        <label name for="radio_1">Hoạt động</label>
-                                                        <input value = "close" name="group1" type="radio" id="radio_2" />
-                                                        <label name for="radio_2">Tạm ngừng</label>
+                                                        
                                                         
                                                     </div>
-                                                    
-                                                
-                                                    
-                                                    
-                                                    
+                                                    <select name ="newBranch" class="form-control show-tick">
+                                                        <option value="">-- Vui lòng chọn chi nhánh --</option>
+                                                        @foreach($branch as $chiNhanh)
+                                                        <option  value="{{$chiNhanh->name_branch}}">{{$chiNhanh->name_branch}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <!-- Default radio -->
+                                                    <div class="demo-radio-button">
+                                                        <input value = "active" name="group1" type="radio" id="radio_3" checked />
+                                                        <label name for="radio_3">Hoạt động</label>
+                                                        <input value = "close" name="group1" type="radio" id="radio_4" />
+                                                        <label name for="radio_4">Tạm ngừng</label>
+                                                        
+                                                    </div>
+
                                                     <button class="btn btn-primary waves-effect" type="submit">Chấp nhận</button>
                                                 </form>
                                             </div>
@@ -149,21 +156,23 @@
                                         <div class="form-line">
                                             <input  type="text" class="form-control" name="name" placeholder="Tên phòng ban"  required>
                                             
+                                            
                                         </div>
+                                        
                                     </div>
+                                    <select name ="chiNhanh" class="form-control show-tick">
+                                        <option value="">-- Vui lòng chọn chi nhánh --</option>
+                                        @foreach($branch as $value)
+                                        <option value="{{$value->name_branch}}">{{$value->name_branch}}</option>
+                                        @endforeach
+                                    </select>
                                     <!-- Default radio -->
                                     <div class="demo-radio-button">
                                         <input value = "active" name="group1" type="radio" id="radio_3" checked />
                                         <label name for="radio_3">Hoạt động</label>
                                         <input value = "close" name="group1" type="radio" id="radio_4" />
-                                        <label name for="radio_4">Tạm ngừng</label>
-                                        
-                                    </div>
-                                    
-                                   
-                                    
-                                    
-                                    
+                                        <label name for="radio_4">Tạm ngừng</label>                                      
+                                    </div>     
                                     <button class="btn btn-primary waves-effect" type="submit">Chấp nhận</button>
                                 </form>
                             </div>
@@ -212,6 +221,7 @@
 
 <!-- Demo Js -->
 <script src="{{ asset('project_asset/js/demo.js')}}"></script>
+<script src="{{ asset('project_asset/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
     $('.delete-confirm').on('click', function (event) {

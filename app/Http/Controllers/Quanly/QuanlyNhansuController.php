@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Session;
 class QuanlyNhansuController extends Controller
 {
     public function index(Request $request){
-				$request->user()->authorizeRoles(['admin']);
+		$request->user()->authorizeRoles(['admin']);
         $getData = DB::table('users')->select('*')->get();
 
-	    	return view('admin.Nhansu.nhansu')->with('listnhansu',$getData);
+	    return view('admin.Nhansu.nhansu')->with('listnhansu',$getData);
     }
     public function create(){
         return view('admin.Nhansu.create');
