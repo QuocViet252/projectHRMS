@@ -809,6 +809,13 @@ Manage Role
               </h2>
           </div> --}}
           <!-- Basic Examples -->
+          @if(session('success'))
+            <div class ="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss ="alert" aria-hidden="true"></button>
+                
+                {{session('success')}}
+            </div>
+          @endif
           <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="card">
@@ -845,7 +852,7 @@ Manage Role
                                           <td>{{ $nhansu->salary }}</td>
                                           <td>
                                               <a data-toggle="modal" data-target="#sua{{$nhansu->id}}" style='cursor: pointer'>Sửa</a>
-                                              <span><a data-toggle="modal" data-target="#xoa" style='cursor: pointer'>Xóa</a></span>
+                                              <span><a data-toggle="modal" data-target="#xoa{{$nhansu->id}}" style='cursor: pointer'>Xóa</a></span>
                                           </td>
                                       </tr>
                                       <div class="modal fade" id="sua{{$nhansu->id}}" tabindex="-1" role="dialog">
@@ -888,7 +895,7 @@ Manage Role
                                             
                                         </div>
                                       </div>
-                                      <div class="modal fade" id="xoa" tabindex="-1" role="dialog">
+                                      <div class="modal fade" id="xoa{{$nhansu->id}}" tabindex="-1" role="dialog">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
