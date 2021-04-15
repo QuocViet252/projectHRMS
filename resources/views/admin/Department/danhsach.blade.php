@@ -168,10 +168,10 @@
                                     </select>
                                     <!-- Default radio -->
                                     <div class="demo-radio-button">
-                                        <input value = "active" name="group1" type="radio" id="radio_3" checked />
-                                        <label name for="radio_3">Hoạt động</label>
-                                        <input value = "close" name="group1" type="radio" id="radio_4" />
-                                        <label name for="radio_4">Tạm ngừng</label>                                      
+                                        <input value = "active" name="group1" type="radio" id="radio_1" checked />
+                                        <label name for="radio_1">Hoạt động</label>
+                                        <input value = "close" name="group1" type="radio" id="radio_2" />
+                                        <label name for="radio_2">Tạm ngừng</label>                                      
                                     </div>     
                                     <button class="btn btn-primary waves-effect" type="submit">Chấp nhận</button>
                                 </form>

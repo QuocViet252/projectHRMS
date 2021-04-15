@@ -78,7 +78,10 @@ class PhongBanController extends Controller
     {
         $editPhongBan = PhongBan::find($id);
         
-        return view('admin.Department.sua',compact('editPhongBan'));
+        if(empty($editPhongBan)){
+            return view('errors.401');
+        }
+        
     }
 
     /**
@@ -90,8 +93,9 @@ class PhongBanController extends Controller
     public function postSua(Request $request,$id)
     {
        
+        
         $phongban = PhongBan::find($id);
-
+        
         $phongban->name = $request->name;
         $phongban->chinhanh = $request->get('newBranch',"");
         $checkActiveOrClose = $request->get('group1');
@@ -135,9 +139,15 @@ class PhongBanController extends Controller
     public function delete($id)
     {
         $phongban = PhongBan::find($id);
-        if($phongban->delete()){
-            return redirect('phongban')->with('success',__('Đã xóa thành công phòng ban'));
+        if(!empty($phongban)){
+            if($phongban->delete()){
+                return redirect('phongban')->with('success',__('Đã xóa thành công phòng ban'));
+            }
         }
+        else{
+            return view('errors.401');
+        }
+        
         
     }
 }
