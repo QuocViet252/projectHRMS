@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+    Phòng Ban
+@endsection
 @section('css')
 <!-- Bootstrap Core Css -->
 <link href="{{ asset('project_asset/plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
