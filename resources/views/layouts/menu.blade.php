@@ -60,11 +60,45 @@
                         </a>
                     </li>
                     <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">perm_contact_calendar</i>
+                            <span>Vai Trò - Chức Năng</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{{url('phanquyen')}}">
+                                    <span>Bảng Phân Quyền</span>
+                                </a>
+                                
+                            </li>
+                            <li>
+                                <a href="{{url('role')}}">
+                                    <span>Vai Trò</span>
+                                </a>
+                                
+                            </li>
+                            <li>
+                                <a href="{{url('chucnang')}}">
+                                    <span>Chức Năng</span>
+                                </a>
+                                
+                            </li>
+                            
+                            <li>
+                                <a href="{{url('nhanvien/vaitro/danhsach')}}">
+                                    <span>Danh Sách Vai Trò Nhân Viên</span>
+                                </a>
+                                
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="pages/helper-classes.html">
                             <i class="material-icons">layers</i>
                             <span>Helper Classes</span>
                         </a>
                     </li>
+                    
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">widgets</i>

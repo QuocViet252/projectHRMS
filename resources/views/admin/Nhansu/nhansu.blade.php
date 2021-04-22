@@ -837,7 +837,7 @@ Manage Role
                                           <th>Chức vụ</th>
                                           <th>Mail</th>
                                           <th>Điện thoại</th>
-                                          <th>Lương</th>
+                                          
                                           <th>Chức năng</th>
                                       </tr>
                                   </thead>
@@ -849,7 +849,7 @@ Manage Role
                                           <td>{{ $nhansu->role }}</td>
                                           <td>{{ $nhansu->email }}</td>
                                           <td>{{ $nhansu->phone }}</td>
-                                          <td>{{ $nhansu->salary }}</td>
+                                          
                                           <td>
                                               <a data-toggle="modal" data-target="#sua{{$nhansu->id}}" style='cursor: pointer'>Sửa</a>
                                               <span><a data-toggle="modal" data-target="#xoa{{$nhansu->id}}" style='cursor: pointer'>Xóa</a></span>
@@ -880,10 +880,7 @@ Manage Role
                                                             <label for="role">Chức vụ</label>
                                                             <input type="text" class="form-control" id="role" name="role" placeholder="Chức vụ" maxlength="15" value="{{ $nhansu->role }}" required />
                                                         </div>
-                                                    <div class="form-group">
-                                                            <label for="salary">Lương</label>
-                                                            <input type="text" class="form-control" id="salary" name="salary" placeholder="Lương" maxlength="15" value="{{ $nhansu->salary }}" required />
-                                                    </div>
+                                                    
                                                 
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-link waves-effect">Lưu</button>

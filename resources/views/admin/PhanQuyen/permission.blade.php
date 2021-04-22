@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Phòng Ban
+    Chức Năng
 @endsection
 @section('css')
 <!-- Bootstrap Core Css -->
@@ -50,9 +50,9 @@
                     <div class="header">
                         
                         <h2>
-                            Danh Sách Phòng Ban Công Ty SkyTech
+                            Danh Sách Chức Năng Công Ty SkyTech
                             <div style="float:right" >
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Thêm Phòng Ban</button>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Thêm Chức Năng</button>
                                
                             </div>
                         </h2>
@@ -66,26 +66,24 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Tên Phòng Ban</th>
-                                        <th>Tình Trạng</th>
-                                        <th>Chi Nhánh</th>
+                                        <th>Tên Chức Năng</th>
+                                        
                                         <th width="10%" >Chức Năng</th>
                                         
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
-                                    @foreach($phongban as $value)
+                                    @foreach($chucNang as $value)
                                     <tr>
 
                                         <td>{{$value->id}}</td>
                                         <td>{{$value->name}}</td>
-                                        <td>{{$value->tinhtrang}}</td>
-                                        <td>{{$value->chinhanh}}</td>
+                                        
                                         <td>
                                         
                                         
-                                        <a href="{{url('/phongban/xoa/'.$value->id)}}"  class="button delete-confirm"><i style="font-size:22px" class="material-icons">delete_forever</i></a>
+                                        <a href="{{url('/chucnang/xoa/'.$value->id)}}"  class="button delete-confirm"><i style="font-size:22px" class="material-icons">delete_forever</i></a>
                                         <a href =""  type="button" data-toggle="modal" data-target="#fix{{$value->id}}"><i style="font-size:22px" class="material-icons">edit_calendar</i><a>
                                         </td>
                                         
@@ -98,10 +96,10 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 style='color:#00b0e4' class="modal-title">Sửa Phòng Ban {{$value->name}}</h4>
+                                                <h4 style='color:#00b0e4' class="modal-title">Sửa chức năng {{$value->name}}</h4>
                                             </div>
                                             <div  class="body">
-                                                <form action = "{{url('phongban/sua/'.$value->id)}}" id="form_validation" method="POST">
+                                                <form action = "{{url('chucnang/sua/'.$value->id)}}" id="form_validation" method="POST">
                                                 @csrf
                                                     <div class="form-group form-float">
                                                         <div class="form-line">
@@ -110,20 +108,9 @@
                                                         
                                                         
                                                     </div>
-                                                    <select name ="newBranch" class="form-control show-tick">
-                                                        <option value="">-- Vui lòng chọn chi nhánh --</option>
-                                                        @foreach($branch as $chiNhanh)
-                                                        <option  value="{{$chiNhanh->name_branch}}">{{$chiNhanh->name_branch}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    
                                                     <!-- Default radio -->
-                                                    <div class="demo-radio-button">
-                                                        <input value = "active" name="group1" type="radio" id="radio_3" checked />
-                                                        <label name for="radio_3">Hoạt động</label>
-                                                        <input value = "close" name="group1" type="radio" id="radio_4" />
-                                                        <label name for="radio_4">Tạm ngừng</label>
-                                                        
-                                                    </div>
+                                                    
 
                                                     <button class="btn btn-primary waves-effect" type="submit">Chấp nhận</button>
                                                 </form>
@@ -150,32 +137,20 @@
                         <div class="modal-content">
                             <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 style='color:#00b0e4' class="modal-title">Tạo Phòng Ban Công Ty SkyTech</h4>
+                            <h4 style='color:#00b0e4' class="modal-title">Tạo Chức Năng Công Ty SkyTech</h4>
                             </div>
                             <div  class="body">
-                                <form action = "{{url('phongban/them')}}" id="form_validation" method="POST">
+                                <form action = "{{url('chucnang/them')}}" id="form_validation" method="POST">
                                 @csrf
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input  type="text" class="form-control" name="name" placeholder="Tên phòng ban"  required>
+                                            <input  type="text" class="form-control" name="name" placeholder="Tên chức năng"  required>
                                             
                                             
                                         </div>
                                         
                                     </div>
-                                    <select name ="chiNhanh" class="form-control show-tick">
-                                        <option value="">-- Vui lòng chọn chi nhánh --</option>
-                                        @foreach($branch as $value)
-                                        <option value="{{$value->name_branch}}">{{$value->name_branch}}</option>
-                                        @endforeach
-                                    </select>
-                                    <!-- Default radio -->
-                                    <div class="demo-radio-button">
-                                        <input value = "active" name="group1" type="radio" id="radio_1" checked />
-                                        <label name for="radio_1">Hoạt động</label>
-                                        <input value = "close" name="group1" type="radio" id="radio_2" />
-                                        <label name for="radio_2">Tạm ngừng</label>                                      
-                                    </div>     
+                                    
                                     <button class="btn btn-primary waves-effect" type="submit">Chấp nhận</button>
                                 </form>
                             </div>
@@ -231,7 +206,7 @@
         const url = $(this).attr('href');
         swal({
             title: 'Xóa phòng ban',
-            text: 'Bạn có thực sự muốn xóa phòng ban này?',
+            text: 'Bạn có thực sự muốn xóa chức năng này?',
             icon: 'warning',
             buttons: ["Hủy", "Đồng ý!"],
         }).then(function(value) {

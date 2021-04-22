@@ -48,3 +48,22 @@ Route::post('nhansu/create', 'Quanly\QuanlyNhansuController@store')->name('nhans
 Route::get('nhansu/{id}/edit', 'Quanly\QuanlyNhansuController@edit')->name('nhansuEdit');
 Route::post('nhansu/update/{id}', 'Quanly\QuanlyNhansuController@update')->name('nhansuUpdate');
 Route::get('nhansu/{id}/delete', 'Quanly\QuanlyNhansuController@destroy')->name('nhansuDelete'); 
+
+Route::get('role','PhanQuyen\PhanQuyenController@getRole');
+Route::post('role/them','PhanQuyen\PhanQuyenController@createRole');
+Route::get('role/xoa/{id}','PhanQuyen\PhanQuyenController@deleteRole');
+Route::post('role/sua/{id}','PhanQuyen\PhanQuyenController@editRole');
+
+Route::get('chucnang','PhanQuyen\PhanQuyenController@getChucNang');
+Route::post('chucnang/them','PhanQuyen\PhanQuyenController@createChucNang');
+Route::get('chucnang/xoa/{id}','PhanQuyen\PhanQuyenController@deleteChucNang');
+Route::post('chucnang/sua/{id}','PhanQuyen\PhanQuyenController@editChucNang');
+
+Route::get('nhanvien/vaitro','PhanQuyen\PhanQuyenController@index');
+Route::get('nhanvien/vaitro/danhsach','PhanQuyen\PhanQuyenController@getListRoleUser');
+Route::post('nhanvien/vaitro/sua/{id}','PhanQuyen\PhanQuyenController@postEditRoleUser');
+
+Route::get('phanquyen','PhanQuyen\PhanQuyenController@getPhanQuyen');
+Route::post('phanquyen/sua/{id}','PhanQuyen\PhanQuyenController@editRolePermission');
+
+
